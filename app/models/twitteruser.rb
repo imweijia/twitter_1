@@ -3,7 +3,7 @@ class Twitteruser < ActiveRecord::Base
 
   def fetch_tweets!
     tweets = $client.user_timeline(self.username)
-    tweets.each do |t|
+    tweets.reverse.each do |t|
       Tweet.create(twitteruser_id: self.id, text: t.text, time_created: t.created_at)
     end
   end

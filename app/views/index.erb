@@ -1,13 +1,15 @@
 <div class="container">
 
-  <form action="/<%= @tweets%>", method="post">
-    <input type="text" name="username" placeholder ="Twitter username" />
+  <form id="target" method="post">
+    <input id="username" type="text" name="username" placeholder ="Twitter username" />
     <input type="submit" value="Enter" />
   </form>
 
-
 </div>
 
+<div class='loading'>
+</div>
 
-
+<div id="result">
+</div>
 
