@@ -20,6 +20,12 @@ end
 
 
 post '/tweets' do
-  @tweets = $client.user_timeline(params[:username])
+  @user = Twitteruser.find_by_username(params[:username])
+  if @user.tweets.empty?
+    @user.fetch_tweets!
+  elsif @user.tweets_stale?
+    @user.fetch_tweets!
+  end
+  @tweets = @user.tweets.limit(10)
   erb :tweets
 end
